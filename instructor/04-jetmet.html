@@ -108,11 +108,11 @@
   CMS Physics Objects
 </div>
 
-<aside class="col-md-12 lesson-progress"><div style="width: 33%" class="percentage">
-    33%
+<aside class="col-md-12 lesson-progress"><div style="width: 42%" class="percentage">
+    42%
   </div>
   <div class="progress incubator">
-    <div class="progress-bar incubator" role="progressbar" style="width: 33%" aria-valuenow="33" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
+    <div class="progress-bar incubator" role="progressbar" style="width: 42%" aria-valuenow="42" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
     </div>
   </div>
 </aside><div class="container">
@@ -214,7 +214,7 @@
 <div class="accordion accordion-flush" id="accordionFlush4">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading4">
-        <a href="03-muons.html">3. Muons &amp; Taus</a>
+        <a href="03-muons.html">3. Muons &amp; Tau leptons</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -247,15 +247,6 @@
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading6">
         <a href="05-btagging.html">5. Jet flavor tagging</a>
-    </div><!--/div.accordion-header-->
-
-  </div><!--/div.accordion-item-->
-</div><!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush7">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading7">
-        <a href="06-jecjer.html">6. Jet corrections</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -310,7 +301,7 @@
       <div class="d-none d-sm-none d-md-block">
         <a class="chapter-link" href="../instructor/03-muons.html" rel="prev">
           <i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>
-          Previous: Muons &amp; Taus
+          Previous: Muons &amp; Tau leptons
         </a>
         <a class="chapter-link float-end" href="../instructor/05-btagging.html" rel="next">
           Next: Jet flavor tagging...
@@ -319,7 +310,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Jets and MET</h1>
-        <p>Last updated on 2026-06-23 |
+        <p>Last updated on 2026-07-16 |
 
         <a href="https://github.com/cms-opendata-workshop/workbench-template-md/edit/main/episodes/04-jetmet.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -356,67 +347,64 @@ Data?</li>
 </div>
 </div>
 </div>
-<p>After tracks and energy deposits in the CMS tracking detectors
-(inner, muon) and calorimeters (electromagnetic, hadronic) are
-reconstructed as particle flow candidates, an event can be interpreted
-in various ways. Two common elements of event interpretation are
-<strong>clustering jets</strong> and calculating <strong>missing
-transverse momentum</strong>.</p>
+<p>After tracks and energy deposits in the CMS tracking detectors,
+calorimeters, and muon detectors are reconstructed as particle flow
+candidates, an event can be interpreted in various ways. Two common
+elements of event interpretation are <strong>clustering jets</strong>
+and calculating <strong>missing transverse momentum</strong>.</p>
 <section><h2 class="section-heading" id="jets">Jets<a class="anchor" aria-label="anchor" href="#jets"></a></h2>
-<hr class="half-width"><p>Jets are spatially-grouped collections of long-lived particles that
-are produced when a quark or gluon hadronizes. The kinetmatic properties
-of jets resemble that of the initial partons that produced them. In the
+<hr class="half-width"><p>When a quark or gluon travels through the detector material, it
+creates a dense shower of long-lived particles. These particles can be
+clustered together into “jets”. The momentum and energy of a jet
+resembles that of the initial quark or gluon that produced it. In the
 CMS language, jets are made up of many particles, with the following
 predictable energy composition:</p>
 <ul><li>~65% charged hadrons</li>
-<li>~25% photons (from neutral pions)</li>
+<li>~25% photons (usually produced when neutral pi mesons decay)</li>
 <li>~10% neutral hadrons</li>
-</ul><p>Jets are very messy! Hadronization and the subsequent decays of
-unstable hadrons can produce 100s of particles near each other in the
-CMS detector. Hence these particles are rarely analyzed individually.
-How can we determine which particle candidates should be included in
-each jet?</p>
+</ul><p>Jets are very messy! Hadron showers can produce 100s of particles
+near each other in the CMS detector, so these particles are rarely
+analyzed individually. How can we determine which particle candidates
+should be included in each jet?</p>
 <div class="section level3">
 <h3 id="clustering">Clustering<a class="anchor" aria-label="anchor" href="#clustering"></a></h3>
 <p>Jets can be clustered using a variety of different inputs from the
 CMS detector. “CaloJets” use only calorimeter energy deposits. “GenJets”
 use generated particles from a simulation. But by far the most common
 are “PFJets”, from <strong>particle flow candidates</strong>.</p>
-<p>The result of the CMS Particle Flow algorithm is a list of particle
-candidates that account for all inner-tracker and muon tracks and all
-above-threshold energy deposits in the calorimeters. These particles are
-formed into jets using a “clustering algorithm”. The most common
-algorithm used by CMS is the “anti-kt” algorithm, which is abbreviated
-“AK”. It iterates over particle pairs and finds the two (<em>i</em> and
-<em>j</em>) that are the closest in some distance measure and determines
-whether to combine them:</p>
+<p>As we’ve learned, the result of the CMS Particle Flow algorithm is a
+list of particle candidates. These particles are formed into jets using
+a “clustering algorithm”. The most common algorithm used by CMS is the
+“anti-kt” algorithm, which is abbreviated “AK”. It iterates over
+particle pairs and finds the two (<em>i</em> and <em>j</em>) that are
+the closest in some distance measure and determines whether to combine
+them:</p>
 <p><span class="math inline">\(d_{ij} = \min(p^{-2}_{T,i},p^{-2}_{T,j})
 \Delta R^2_{ij}/R^2\)</span></p>
 <p>Particle pairs are combined as long as <span class="math inline">\(d_{ij} &lt; p^{-2}_{T,i}\)</span>. The momentum
 power (-2) used by the anti-kt algorithm means that higher-momentum
 particles are clustered first. This leads to jets with a round shape
-that tend to be centered on the hardest particle. In CMS software this
-clustering is implemented using the <a href="../www.fastjet.fr">FastJet</a>
-package.</p>
+that tend to be centered on the highest momentum particle.</p>
 <figure><img src="../fig/clustering.png" style="width:100.0%" class="figure mx-auto d-block"></figure><figure><img src="../fig/antikt.png" class="figure mx-auto d-block"></figure></div>
 <div class="section level3">
 <h3 id="pileup">Pileup<a class="anchor" aria-label="anchor" href="#pileup"></a></h3>
 <p>Inevitably, the list of particle flow candidates contains particles
-that did not originate from the primary interaction point. CMS
-experiences multiple simultaneous collisions, called “pileup”, during
-each “bunch crossing” of the LHC, so particles from multiple collisions
-coexist in the detector. There are various methods to remove their
-contributions from jets:</p>
+that did not originate from the primary collision. CMS experiences
+multiple simultaneous collisions, called “pileup”, during each “bunch
+crossing” of the LHC, so particles from multiple collisions coexist in
+the detector. There are various methods to remove their contributions
+from jets:</p>
 <ul><li>Charged hadron subtraction <a href="http://cms-results.web.cern.ch/cms-results/public-results/preliminary-results/JME-14-001/index.html" class="external-link">CHS</a>:
-all charged hadron candidates are associated with a track. If the track
-is not associated with the primary vertex, that charged hadron can be
-removed from the list. CHS is limited to the region of the detector
+all charged hadron PF candidates are associated with a track. If the
+track is not connected with the primary vertex, that charged hadron can
+be removed from the list. CHS is limited to the region of the detector
 covered by the inner tracker. The pileup contribution to neutral hadrons
-has to be removed mathematically – more in episode 3!</li>
+has to be removed mathematically since those candidates have no
+tracks.</li>
 <li>PileUp Per Particle Identification (PUPPI, available in Run 2): CHS
 is applied, and then all remaining particles are weighted based on their
 likelihood of arising from pileup. This method is more stable and
-performant in high pileup scenarios such as the upcoming HL-LHC
+performs very well in high pileup scenarios such as the upcoming HL-LHC
 era.</li>
 </ul></div>
 </section><section><h2 class="section-heading" id="small-radius-jets-in-nanoaod">Small-radius jets in NanoAOD<a class="anchor" aria-label="anchor" href="#small-radius-jets-in-nanoaod"></a></h2>
@@ -432,7 +420,7 @@ collection in NanoAOD:</p>
   Jet collection branches
   </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
 <div class="accordion-body">
 <table class="table"><caption>Jet collection branches</caption>
 <colgroup><col width="50%"><col width="13%"><col width="36%"></colgroup><thead><tr><th>Object property</th>
@@ -659,7 +647,7 @@ in NanoAOD:</p>
   FatJet collection branches
   </h3>
 </button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
+<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
 <div class="accordion-body">
 <table class="table"><caption>Jet collection branches</caption>
 <colgroup><col width="50%"><col width="13%"><col width="36%"></colgroup><thead><tr><th>Object property</th>
@@ -855,37 +843,24 @@ X-&gt;qq vs QCD tagging, use Xqq/(Xqq+QCD). For W vs QCD tagging, use
 and cross-reference indices, the overwhelming majority of variables
 stored for FatJets are used to identify hadronic decays of high-momentum
 massive SM particles like top quarks, Higgs bosons, W bosons, and Z
-bosons. This will be covered in a later lesson.</p>
+bosons. This will be covered in the next page.</p>
 </section><section><h2 class="section-heading" id="met">MET<a class="anchor" aria-label="anchor" href="#met"></a></h2>
 <hr class="half-width"><p><a href="https://cds.cern.ch/record/1543527" class="external-link">Missing transverse
 momentum</a> is the negative vector sum of the transverse momenta of all
 particle flow candidates in an event. The magnitude of the missing
 transverse momentum vector is called missing transverse energy and
-referred to with the acronym “MET”. Since energy corrections are made to
-the particle flow jets (see the last page in this lesson), those
-corrections are propagated to MET by adding back the momentum vectors of
-the original jets and then subtracting the momentum vectors of the
-corrected jets. This correction is called “Type 1” and is standard for
-all CMS analyses.</p>
-<table class="table"><colgroup><col width="50%"><col width="13%"><col width="36%"></colgroup><thead><tr><th>Object property</th>
+referred to with the acronym “MET”. In a perfect collision, the
+colliding particles would have exactly 0 momentum in the <span class="math inline">\(x\)</span> or <span class="math inline">\(y\)</span> direction. If all of the collision
+products are detecter perfectly in CMS, the “missing” momentum found
+when we calculate this vector sum would also be 0. In real life, some
+particles are not detected at all by CMS, and all particles are measured
+with slight imperfections, creating MET. Types of particles that would
+produce “real” MET include neutrinos, dark matter particles, or other
+exotic particles that would not interact in CMS.</p>
+<table class="table"><thead><tr><th>Object property</th>
 <th>Type</th>
 <th>Description</th>
-</tr></thead><tbody><tr><td>MET_MetUnclustEnUpDeltaX</td>
-<td>Float_t</td>
-<td>Delta (METx_mod-METx) Unclustered Energy Up</td>
-</tr><tr><td>MET_MetUnclustEnUpDeltaY</td>
-<td>Float_t</td>
-<td>Delta (METy_mod-METy) Unclustered Energy Up</td>
-</tr><tr><td>MET_covXX</td>
-<td>Float_t</td>
-<td>xx element of met covariance matrix</td>
-</tr><tr><td>MET_covXY</td>
-<td>Float_t</td>
-<td>xy element of met covariance matrix</td>
-</tr><tr><td>MET_covYY</td>
-<td>Float_t</td>
-<td>yy element of met covariance matrix</td>
-</tr><tr><td>MET_phi</td>
+</tr></thead><tbody><tr><td>MET_phi</td>
 <td>Float_t</td>
 <td>phi</td>
 </tr><tr><td>MET_pt</td>
@@ -942,7 +917,7 @@ any links that you are not going to use.
       <div class="d-none d-sm-none d-md-block">
         <a class="chapter-link" href="../instructor/03-muons.html" rel="prev">
           <i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>
-          Previous: Muons &amp; Taus
+          Previous: Muons &amp; Tau leptons
         </a>
         <a class="chapter-link float-end" href="../instructor/05-btagging.html" rel="next">
           Next: Jet flavor tagging...
@@ -991,8 +966,8 @@ any links that you are not going to use.
   "url": "https://cms-opendata-workshop.github.io/workbench-template-md/instructor/04-jetmet.html",
   "identifier": "https://cms-opendata-workshop.github.io/workbench-template-md/instructor/04-jetmet.html",
   "dateCreated": "2024-07-29",
-  "dateModified": "2026-06-23",
-  "datePublished": "2026-07-14"
+  "dateModified": "2026-07-16",
+  "datePublished": "2026-07-16"
 }
 
   </script><script>

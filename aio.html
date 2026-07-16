@@ -258,7 +258,7 @@
 <div class="accordion accordion-flush" id="accordionFlush4">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading4">
-        <a href="03-muons.html">3. Muons &amp; Taus</a>
+        <a href="03-muons.html">3. Muons &amp; Tau leptons</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -283,18 +283,6 @@
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading6">
         <a href="05-btagging.html">5. Jet flavor tagging</a>
-    </div>
-<!--/div.accordion-header-->
-
-  </div>
-<!--/div.accordion-item-->
-</div>
-<!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush7">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading7">
-        <a href="06-jecjer.html">6. Jet corrections</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -359,7 +347,7 @@
         
 <section id="aio-01-introduction"><p>Content from <a href="01-introduction.html">Intro to CMS Physics Objects</a></p>
 <hr>
-<p>Last updated on 2026-06-23 |
+<p>Last updated on 2026-07-16 |
 
         <a href="https://github.com/cms-opendata-workshop/workbench-template-md/edit/main/episodes/01-introduction.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -403,25 +391,26 @@ interpret their nature.</p>
 <p>Certainly, we cannot directly observe all the particles created in
 the collisions because some of them decay very quickly or simply do not
 interact with our detector. However, <em>we can infer their
-presence</em>. If they decay to other stable particles and interact with
-the apparatus, they leave signals in the CMS subdetectors. These signals
-are used to reconstruct the decay products or infer their presence; we
-call these, <strong>physics objects</strong>.</p>
-<p>Physics objects are built with the information collected by the
-sensors of the CMS detector. Take a look at the CMS experiment in the
-image below. This is a good recent <a href="https://youtu.be/6gfvGTCWXaw" class="external-link">video</a> that you can watch later
+presence</em>. If they decay to more stable particles and interact with
+the material of the detector, they leave signals that CMS can record.
+These signals are used to determine the presence of specific types of
+particles moving through the detector – we call these, <strong>physics
+objects</strong>.</p>
+<p>The CMS detector has many many sensors of different kinds that can
+detect signals from particles passing through. Take a look at the CMS
+experiment in the image below. This is a good recent <a href="https://youtu.be/6gfvGTCWXaw" class="external-link">video</a> that you can watch later
 to get a quick feeling of how CMS looks now in Run 3.</p>
-<figure><img src="fig/cmsdetector.png" style="width:100.0%" class="figure mx-auto d-block"></figure><p>Physics objects could be</p>
+<figure><img src="fig/cmsdetector.png" style="width:100.0%" class="figure mx-auto d-block"></figure><p>Physics objects can be:</p>
 <ul>
-<li>muons</li>
 <li>electrons</li>
-<li>jets</li>
+<li>muons</li>
 <li>photons</li>
-<li>taus</li>
+<li>“jets” (cones of energy from particles made of quarks)</li>
+<li>tau leptons</li>
 <li>missing transverse momentum</li>
 </ul>
-<p>In the <a href="https://opendata.cern.ch" class="external-link">CERN Open Portal</a> (CODP)
-site one can find a more detailed description of these physical objects
+<p>On the <a href="https://opendata.cern.ch" class="external-link">CERN Open Portal</a> (CODP)
+site you can find a more detailed description of these physics objects
 and a list of them corresponding to <a href="https://opendata.cern.ch/docs/cms-physics-objects-2010" class="external-link">2010</a>,
 <a href="https://opendata.cern.ch/docs/cms-physics-objects-2011" class="external-link">2011/2012</a>,
 and <a href="https://opendata.cern.ch/docs/cms-physics-objects-2015" class="external-link">2015/2016</a>
@@ -435,28 +424,26 @@ information in a standard ROOT tree.</p>
 </h2>
 <hr class="half-width">
 <p>Physics objects are mainly <strong>reconstructed</strong> using
-methods like clustering and linking parts of a CMS subsystem to parts of
-other CMS subsystems. For instance, electromagnetic objects (electrons
-or photons) are reconstructed by the linking of tracks with ECAL energy
-deposits.</p>
+methods like clustering adjacent signals and linking information between
+different CMS detector components. For instance, electromagnetic objects
+(electrons or photons) are reconstructed by linking tracks from the
+inner tracking detectors with energy clusters in the electromagnetic
+calorimeter.</p>
 <figure><img src="fig/cmsslice.png" style="width:100.0%" class="figure mx-auto d-block"></figure><p>These actions are essential parts of the so-called <strong>Particle
 Flow</strong> (PF) algorithm.</p>
 <figure><img src="fig/pflow.png" style="width:100.0%" class="figure mx-auto d-block"></figure><p>The <strong>particle-flow (PF) algorithm</strong> aims at
 reconstructing and identifying all stable particles in the event, i.e.,
 electrons, muons, photons, charged hadrons and neutral hadrons, with a
-thorough combination of all CMS sub-detectors towards an optimal
-determination of their direction, energy and type. This <strong>list of
-individual particles is then used</strong>, as if it came from a
-Monte-Carlo event generator, to build jets (from which the quark and
-gluon energies and directions are inferred), to determine the missing
+thorough combination of all CMS sub-detectors in order to best determine
+their direction, energy and particle type. This list of individual
+particles is then used to build jets, to determine the missing
 transverse energy (which gives an estimate of the direction and energy
 of the neutrinos and other invisible particles), to reconstruct and
-identify taus from their decay products and more.</p>
-<p>The PF algorithm and all its reconstruction tributaries are written
-in C++ and are part of the <strong>CMSSW</strong> software that is
-required to analyze any open data in the earlier AOD or MiniAOD formats.
-For more information about the PF algorithm you can visit a lesson from
-an earlier workshop: <a href="https://cms-opendata-workshop.github.io/workshop2023-advobjects/" class="external-link">Advanced
+identify tau leptons from their decay products, and more.</p>
+<p>The PF algorithm is written in C++ and is part of the
+<strong>CMSSW</strong> software that is required to analyze any open
+data in the earlier AOD or MiniAOD formats. For more information about
+the PF algorithm you can visit a lesson from an earlier workshop: <a href="https://cms-opendata-workshop.github.io/workshop2023-advobjects/" class="external-link">Advanced
 Tools lesson</a>. The CMS open data from 2016 contains some data samples
 in the NanoAOD format that have been supplemented with particle flow
 information: <a href="https://opendata.cern.ch/search?q=&amp;f=experiment%3ACMS&amp;f=file_type%3Ananoaod-pf" class="external-link">nanoad-pf
@@ -483,7 +470,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-02-electrons"><p>Content from <a href="02-electrons.html">Electrons &amp; Photons</a></p>
 <hr>
-<p>Last updated on 2026-06-23 |
+<p>Last updated on 2026-07-16 |
 
         <a href="https://github.com/cms-opendata-workshop/workbench-template-md/edit/main/episodes/02-electrons.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -523,49 +510,50 @@ quantities</li>
 <section><h2 class="section-heading" id="motivation">Motivation<a class="anchor" aria-label="anchor" href="#motivation"></a>
 </h2>
 <hr class="half-width">
-<p>In the middle of the workshop we will be working on the main
-activity, which is to attempt to replicate a <a href="https://link.springer.com/content/pdf/10.1007/JHEP09(2017)051.pdf" class="external-link">CMS
-physics analysis</a> in a simplified way using modern analysis tools.
-The final state that we will be looking at contains electrons, muons and
-jets. We are using these objects as examples to review the way in which
-we extract physics objects information.</p>
-<p>The analysis requires some special variables, which we will need to
-identify in our Open Data NanoAOD files.</p>
+<p>In this workshop we will do some simple analysis examples using
+NanoAOD Open Data. Physics objects that are detected in CMS have their
+properties measured and stored in the CMS data files. This and the
+following pages will introduce the different physics objects more deeply
+and try to explain several of the most important “branches” in NanoAOD
+ROOT “trees” for each type of object.</p>
 </section><section><h2 class="section-heading" id="electromagnetic-objects">Electromagnetic objects<a class="anchor" aria-label="anchor" href="#electromagnetic-objects"></a>
 </h2>
 <hr class="half-width">
 <p>We call photons and electrons <strong>electromagnetic
 particles</strong> because they leave most of their energy in the
 electromagnetic calorimeter (<strong>ECAL</strong>) so they share many
-common properties and functions</p>
-<p>Many of the different hypothetical exotic particles are unstable and
+common properties.</p>
+<p>Many of the different hypothetical exotic particles for which CMS
+scientists are searching are unstable. Some of these particles
 <strong>can transform, or <em>decay</em>, into electrons</strong>,
 photons, or both. Electrons and photons are also standard tools to
 measure better and understand the properties of already known particles.
 For example, one way to find a Higgs Boson is by looking for signs of
-two photons, or four electrons in the debris of high energy collisions.
-Because electrons and photons are crucial in so many different
-scenarios, the physicists in the CMS collaboration make sure to do their
-best to reconstruct and identify these objects.</p>
+either two photons or four electrons in the debris of high energy
+collisions. Because electrons and photons are crucial in so many
+different scenarios, the physicists in the CMS collaboration make sure
+to do their best to reconstruct and identify these objects.</p>
 <figure><img src="fig/brem.gif" style="width:50.0%" class="figure mx-auto d-block"></figure><p>As depicted in the figure above, tracks – from the pixel and silicon
 tracker systems – as well as ECAL energy deposits are used to
 <strong>identify</strong> the passage of electrons in CMS. Being
-charged, electron trajectories <strong>curve</strong> inside the CMS
-magnetic field. Photons are similar objects but with no tracks.
-Sophisticated algorithms are run in the <strong>reconstruction</strong>
-to take into account subtleties related to the identification of an
-electromagnetic particle. An example is the convoluted
-<strong>showering</strong> of sub-photons and sub-electrons that can
-reach the ECAL due to <em>bremsstrahlung</em> and <em>photon
-conversions</em>.</p>
-<p>We measure momentum and energy but also other properties of these
-objects that help analysts understand better their quality and
+charged, the solid red electron trajectory <strong>curves</strong>
+inside the CMS magnetic field. Photons (depicted with dashed lines
+above) are similar objects but with no tracks. Sophisticated algorithms
+are run in the <strong>reconstruction</strong> to take into account
+subtleties related to the identification of an electromagnetic particle.
+An example is the convoluted <strong>showering</strong> of sub-photons
+and sub-electrons that can reach the ECAL due to <em>bremsstrahlung</em>
+and <em>photon conversions</em> – in the animation, all three energy
+deposits shown in the ECAL would be grouped together as coming from one
+electron object.</p>
+<p>From the tracks and energy clusters we can measure the
+electromagnetic particle’s momentum and energy as well as other
+properties that help analysts understand better their quality and
 origin.</p>
 </section><section><h2 class="section-heading" id="electron-variables-in-nanoaod">Electron variables in NanoAOD<a class="anchor" aria-label="anchor" href="#electron-variables-in-nanoaod"></a>
 </h2>
 <hr class="half-width">
-<p>In the pre-exercises, you learned how to find NanoAOD datasets on the
-Open Data Portal. One example is the <a href="https://opendata.cern.ch/record/30562" class="external-link">SingleElectron dataset</a>.
+<p>One example of a NanoAOD dataset on the Open Data Portal is the <a href="https://opendata.cern.ch/record/30562" class="external-link">SingleElectron dataset</a>.
 The “Dataset Semantics” section has a link to the <a href="https://opendata.cern.ch/eos/opendata/cms/dataset-semantics/NanoAOD/30562/SingleElectron_doc.html" class="external-link">variable
 list webpage</a>. Each “collection” of objects in the NanoAOD file is
 linked by a common naming scheme (ex: <code>Electron_*</code>). The
@@ -906,8 +894,10 @@ region</td>
 <h3 id="electron-4-vector-and-track-information">Electron 4-vector and track information<a class="anchor" aria-label="anchor" href="#electron-4-vector-and-track-information"></a>
 </h3>
 <p>All CMS physics objects contain basic 4-vector information:
-transverse momentum, pseudorapidity, azimuthal angle, and mass or
-energy:</p>
+transverse momentum, pseudorapidity (related to angle from one proton
+beam to the other), azimuthal angle (angle around the cylinder of CMS),
+and mass or energy. This information can easily be converted into a
+4-vector of px, py, pz, and energy.</p>
 <table class="table">
 <caption>electron 4-vector branches</caption>
 <thead><tr>
@@ -934,7 +924,7 @@ energy:</p>
 <tr>
 <td>Electron_pt</td>
 <td>Float_t</td>
-<td>p_{T}</td>
+<td>p_T, transverse momentum</td>
 </tr>
 </tbody>
 </table>
@@ -944,14 +934,16 @@ identified from the track curvature. Electron charge can be computed
 from 3 unique algorithms, so a <code>tightCharge</code> variable exists
 to show when multiple of the charge determinations agree. Information
 from tracks provides other kinematic quantities that are common to
-multiple types of objects. Often, the most pertinent information about
-an object to access from its associated track is its <strong>impact
-parameter</strong> with respect to the primary interaction vertex. We
-can access the impact parameters in the xy-plane (<code>dxy</code> or
-<code>d0</code>) and along the beam axis (<code>dz</code>), as well as
-their respective uncertainties. There is also a 3D impact parameter
-significance that is very useful for identifying leptons that emerged
-from a heavy flavor hadron decay.</p>
+multiple types of objects. It is often interesting to check the
+<strong>impact parameter</strong> of a charged object’s track with
+respect to the primary collision vertex, since this gives a good idea of
+whether or not that particle emerged directly from that particular
+collision or not. We can access the impact parameters in the xy-plane
+(<code>dxy</code> or <code>d0</code>) and along the beam axis
+(<code>dz</code>), as well as their respective uncertainties. There is
+also a 3D impact parameter significance that is very useful for
+identifying leptons that emerged from a heavy flavor hadron decay, since
+those leptons will usually have a larger 3D impact parameter.</p>
 <table class="table">
 <caption>electron track-related branches</caption>
 <colgroup>
@@ -1012,10 +1004,8 @@ from a heavy flavor hadron decay.</p>
 <h3 class="callout-title">Track-based info for photons</h3>
 <div class="callout-content">
 <p>Note: in the case of Photons, since they are neutral objects, they do
-not have a direct track link (though displaced track segments may appear
-from electrons or positrons produced by the photon as it transits the
-detector material). While the <code>charge</code> variable exists for
-all objects, it is not used in photon analyses.</p>
+not have a direct track link. While the <code>charge</code> variable
+exists for all objects, it is not used in photon analyses.</p>
 </div>
 </div>
 </div>
@@ -1024,11 +1014,11 @@ all objects, it is not used in photon analyses.</p>
 <h3 id="detector-information-for-identification">Detector information for identification<a class="anchor" aria-label="anchor" href="#detector-information-for-identification"></a>
 </h3>
 <p>The most signicant difference between a list of certain particles
-from a Monte Carlo generator and a list of the corresponding physics
-objects from CMS is likely the inherent uncertainty in the
-reconstruction. Selection of “a muon” or “an electron” for analysis
-requires algorithms designed to separate “real” objects from “fakes”.
-These are called <strong>identification</strong> algorithms.</p>
+from a simulation and a list of the corresponding physics objects from
+CMS data is likely the inherent uncertainty in the reconstruction.
+Selection of “a muon” or “an electron” for analysis requires algorithms
+designed to separate “real” objects from “fakes”. These are called
+<strong>identification</strong> algorithms.</p>
 <p>Other algorithms are designed to measure the amount of energy
 deposited near the object, to determine if it was likely produced near
 the primary interaction (typically little nearby energy), or from the
@@ -1051,15 +1041,14 @@ can be accessed from the physics object classes.</p>
 <div class="section level3">
 <h3 id="multivariate-electron-identification-mva">Multivariate Electron Identification (MVA)<a class="anchor" aria-label="anchor" href="#multivariate-electron-identification-mva"></a>
 </h3>
-<p>In the Multi-variate Analysis (MVA) approach, one forms a single
-discriminator variable that is computed based on multiple parameters of
-the electron object and provides the best separation between the signal
-and backgrounds by means of multivariate analysis methods and
-statistical learning tools. One can then cut on discriminator value or
-use the distribution of the values for a shape based statistical
-analysis.</p>
-<p>There are two basic types of MVAs that are were trained by CMS for
-2016 electrons:</p>
+<p>In the Multi-variate Analysis (MVA) approach, simple machine learning
+networks are trained on multiple parameters of the electron object, and
+the network’s output value (which typically spans from 0 to 1) can be
+used to separate real electrons from fake electrons. Analysts choose a
+particular numerical value to use as the division point between real
+objects (with values higher that the cut) and fake objects (with values
+lower than the cut). There are two basic types of MVAs that are were
+trained by CMS for 2016 electrons:</p>
 <ul>
 <li>
 <strong>MVA with isolation</strong>: the MVA includes standard
@@ -1156,13 +1145,17 @@ identification criteria</a>:</p>
 </tr>
 </tbody>
 </table>
-<p>Four standard working points are provided * Veto (average efficiency
-~95%). Use this working point for third lepton veto or counting. * Loose
-(average efficiency ~90%). Use this working point when backgrounds are
-rather low. * Medium (average efficiency ~80%). This is a good starting
-point for generic measurements involving W or Z bosons. * Tight (average
-efficiency ~70%). Use this working point for measurements where
-backgrounds are a serious problem.</p>
+<p>Four standard working points are provided</p>
+<ul>
+<li>Veto (average efficiency ~95%). Use this working point for vetoing
+events with more leptons than you want.</li>
+<li>Loose (average efficiency ~90%). Use this working point when
+backgrounds are rather low.</li>
+<li>Medium (average efficiency ~80%). This is a good starting point for
+generic measurements involving W or Z bosons.</li>
+<li>Tight (average efficiency ~70%). Use this working point for
+measurements where backgrounds are a serious problem.</li>
+</ul>
 <p>All of the cut-based working points include particle-flow isolation
 requirements. The <code>HEEP</code> identifier is specifically intended
 to improve efficiency for high-energy electrons with more than 100-200
@@ -1174,14 +1167,14 @@ GeV of transverse momentum.</p>
 <p><strong>Isolation</strong> is computed in similar ways for all
 physics objects: search for particles in a cone around the object of
 interest and sum up their energies, subtracting off the energy deposited
-by pileup particles. This sum divided by the object of interest’s
-transverse momentum is called <strong>relative isolation</strong> and is
-the most common way to determine whether an object was produced
-“promptly” in or following the proton-proton collision (ex: electrons
-from a Z boson decay, or photons from a Higgs boson decay). Relative
-isolation values will tend to be large for particles that emerged from
-weak decays of hadrons within jets, or other similar “nonprompt”
-processes.</p>
+by particles from other simultaneous collisions. This sum divided by the
+object’s transverse momentum is called <strong>relative
+isolation</strong> and is the most common way to determine whether an
+object was produced “promptly” in or following the proton-proton
+collision (ex: electrons from a Z boson decay, or photons from a Higgs
+boson decay). Relative isolation values will tend to be large for
+electrons that emerged from decays of hadrons within jets, or other
+similar “nonprompt” processes.</p>
 <p>While many of the electron identification algorithms include
 isolation, the isolation values are also available:</p>
 <table class="table">
@@ -1499,9 +1492,9 @@ fake objects.</li>
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
-</section></section><section id="aio-03-muons"><p>Content from <a href="03-muons.html">Muons &amp; Taus</a></p>
+</section></section><section id="aio-03-muons"><p>Content from <a href="03-muons.html">Muons &amp; Tau leptons</a></p>
 <hr>
-<p>Last updated on 2026-06-23 |
+<p>Last updated on 2026-07-16 |
 
         <a href="https://github.com/cms-opendata-workshop/workbench-template-md/edit/main/episodes/03-muons.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -1517,6 +1510,7 @@ any links that you are not going to use.
 <ul>
 <li>How are muons reconstructed in CMS?</li>
 <li>How are muons treated in CMS OpenData?</li>
+<li>How are tau leptons reconstructed in CMS?</li>
 </ul>
 </div>
 </div>
@@ -1529,6 +1523,7 @@ any links that you are not going to use.
 <li>Understand how muons are reconstructed in CMS</li>
 <li>Learn variables for muon track-based quantities</li>
 <li>Learn variables for identification and isolation of muons</li>
+<li>Learn the basic elements of tau lepton reconstruction</li>
 </ul>
 </div>
 </div>
@@ -1539,8 +1534,8 @@ any links that you are not going to use.
 </h2>
 <hr class="half-width">
 <p>Muons are the <em>M</em> in CMS (Compact Muon Solenoid). This is in
-part because they are reconstructed basically using all the CMS
-sub-detectors. As it nicely summarized <a href="https://cms.cern/detector/detecting-muons" class="external-link">here</a>:</p>
+part because they are reconstructed using all the CMS sub-detectors. As
+it nicely summarized <a href="https://cms.cern/detector/detecting-muons" class="external-link">here</a>:</p>
 <p><em>[A muon] is measured by fitting a curve to the hits registered in
 the four muon stations, which are located outside of the magnet coil,
 interleaved with iron “return yoke” plates. The particle path is
@@ -1551,12 +1546,13 @@ a measurement of particle momentum. Indeed, the strong magnetic field
 generated by the CMS solenoid bends the particle’s trajectory, with a
 bending radius that depends on its momentum: the more straight the
 track, the higher the momentum.</em></p>
-<figure><img src="fig/MuStations.gif" class="figure mx-auto d-block"></figure><p>Depending essentially on the kind of sub-detectors were used to
-reconstruct muons, they are usually classified accroding to the summary
-image below.</p>
-<figure><img src="fig/muonreco.png" class="figure mx-auto d-block"></figure><p>Muons have many features in common with electrons, but their own
-unique identification algorithms. We will use the same NanoAOD file as
-in the previous episode to look at the Muon NanoAOD branches.</p>
+<figure><img src="fig/MuStations.gif" class="figure mx-auto d-block"></figure><p>While uons <em>can</em> be reconstructed using only the muon system,
+the best measurements come from combining information from the muon
+detectors and the tracking detectors. Muons that leave clear signals in
+both of these detectors are called “global muons”. Muons have many
+features in common with electrons, but their own unique identification
+algorithms. We will use the same NanoAOD file as in the previous episode
+to look at the Muon NanoAOD branches.</p>
 <div id="accordionSpoiler1" class="accordion spoiler-accordion accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
@@ -1565,7 +1561,7 @@ in the previous episode to look at the Muon NanoAOD branches.</p>
   Muon collection branches
   </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
 <div class="accordion-body">
 <table class="table">
 <caption>NanoAOD muon collection variables</caption>
@@ -1980,10 +1976,10 @@ uncertainties or significances give impact parameter information</li>
 <div class="section level3">
 <h3 id="muon-identification-and-isolation">Muon identification and isolation<a class="anchor" aria-label="anchor" href="#muon-identification-and-isolation"></a>
 </h3>
-<p>The CMS Muon object group has created member functions for the
-identification algorithms that store pass/fail decisions about the
-quality of each muon. A set of cut-based identification working points
-are available: <code>looseId</code>, <code>mediumId</code>,
+<p>The CMS Muon object group has several identification algorithms and
+the pass/fail decisions for several working points are stored in
+NanoAOD. A set of cut-based identification working points are available:
+<code>looseId</code>, <code>mediumId</code>,
 <code>mediumPromptId</code>, <code>softId</code>, <code>highPtId</code>.
 Another set of identification algorithms are based on MVA discriminants:
 <code>mvaId</code>, <code>mvaLowPtId</code>, <code>mvaTTH</code>,
@@ -2056,21 +2052,19 @@ includes tracker high pT)</td>
 </tr>
 </tbody>
 </table>
-<p>Hard processes produce large angles between the final state partons.
-The final object of interest will be separated from the other objects in
-the event or be <em>isolated</em>. For instance, an isolated muon might
-be produced in the decay of a W boson. In contrast, a non-isolated muon
-can come from a weak decay inside a jet.</p>
+<p>Just as we discussed for electrons, muons that are produced right
+away during a collision are usually separated from the other objects in
+the event, or <em>isolated</em>. For instance, an isolated muon might be
+produced in the decay of a W boson. In contrast, a non-isolated muon
+might come from hadrons decaying inside a jet.</p>
 <p>Muon isolation is calculated from a combination of factors: energy
 from charged hadrons, energy from neutral hadrons, and energy from
-photons, all in a cone of radius <span class="math inline">\(R =
-\sqrt{\eta^2 + \phi^2} &lt; 0.3\)</span> or <span class="math inline">\(&lt;0.4\)</span> around the muon. Many algorithms
-also feature a <em>correction factor</em> that subtracts average energy
-expected from pileup contributions to this con. The sum of the <span class="math inline">\(p_{T}\)</span> of the charged hadrons associated
-to vertices other than the primary vertex, is used to correct for pileup
-contamination in the total flux of neutrals found in the muon isolation
-cone. A factor of <span class="math inline">\(\beta = 0.5\)</span> is
-used to scale this contribution as:</p>
+photons, all in a cone around the muon. Two cone sizes are used: either
+radii of 0.3 or 0.4, measured in angular units. Many algorithms also
+feature a <em>correction factor</em> that subtracts average energy
+expected from extra simultaneous collisions to this cone. This energy
+sum is then divided by the muon’s transverse momentum to form “relative”
+isolation. The whole calculation looks like this:</p>
 <p><span class="math inline">\(I_{\mu} = \frac{1}{p_{T}} \sum_{R&lt;0.4}
 \left( p_{T}^{\mathrm{charged\,hadrons}} + \max(p_{T}^{\mathrm{photons}}
 + p_{T}^{\mathrm{neutral\,hadrons}} - \beta
@@ -2219,7 +2213,7 @@ clusters.</p>
   Tau collection branches
   </h3>
 </button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
+<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
 <div class="accordion-body">
 <table class="table">
 <caption>Tau collection branches</caption>
@@ -2496,7 +2490,7 @@ any links that you are not going to use.
 </div>
 </section></section><section id="aio-04-jetmet"><p>Content from <a href="04-jetmet.html">Jets and MET</a></p>
 <hr>
-<p>Last updated on 2026-06-23 |
+<p>Last updated on 2026-07-16 |
 
         <a href="https://github.com/cms-opendata-workshop/workbench-template-md/edit/main/episodes/04-jetmet.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -2529,30 +2523,29 @@ Data?</li>
 </div>
 </div>
 </div>
-<p>After tracks and energy deposits in the CMS tracking detectors
-(inner, muon) and calorimeters (electromagnetic, hadronic) are
-reconstructed as particle flow candidates, an event can be interpreted
-in various ways. Two common elements of event interpretation are
-<strong>clustering jets</strong> and calculating <strong>missing
-transverse momentum</strong>.</p>
+<p>After tracks and energy deposits in the CMS tracking detectors,
+calorimeters, and muon detectors are reconstructed as particle flow
+candidates, an event can be interpreted in various ways. Two common
+elements of event interpretation are <strong>clustering jets</strong>
+and calculating <strong>missing transverse momentum</strong>.</p>
 <section><h2 class="section-heading" id="jets">Jets<a class="anchor" aria-label="anchor" href="#jets"></a>
 </h2>
 <hr class="half-width">
-<p>Jets are spatially-grouped collections of long-lived particles that
-are produced when a quark or gluon hadronizes. The kinetmatic properties
-of jets resemble that of the initial partons that produced them. In the
+<p>When a quark or gluon travels through the detector material, it
+creates a dense shower of long-lived particles. These particles can be
+clustered together into “jets”. The momentum and energy of a jet
+resembles that of the initial quark or gluon that produced it. In the
 CMS language, jets are made up of many particles, with the following
 predictable energy composition:</p>
 <ul>
 <li>~65% charged hadrons</li>
-<li>~25% photons (from neutral pions)</li>
+<li>~25% photons (usually produced when neutral pi mesons decay)</li>
 <li>~10% neutral hadrons</li>
 </ul>
-<p>Jets are very messy! Hadronization and the subsequent decays of
-unstable hadrons can produce 100s of particles near each other in the
-CMS detector. Hence these particles are rarely analyzed individually.
-How can we determine which particle candidates should be included in
-each jet?</p>
+<p>Jets are very messy! Hadron showers can produce 100s of particles
+near each other in the CMS detector, so these particles are rarely
+analyzed individually. How can we determine which particle candidates
+should be included in each jet?</p>
 <div class="section level3">
 <h3 id="clustering">Clustering<a class="anchor" aria-label="anchor" href="#clustering"></a>
 </h3>
@@ -2560,44 +2553,42 @@ each jet?</p>
 CMS detector. “CaloJets” use only calorimeter energy deposits. “GenJets”
 use generated particles from a simulation. But by far the most common
 are “PFJets”, from <strong>particle flow candidates</strong>.</p>
-<p>The result of the CMS Particle Flow algorithm is a list of particle
-candidates that account for all inner-tracker and muon tracks and all
-above-threshold energy deposits in the calorimeters. These particles are
-formed into jets using a “clustering algorithm”. The most common
-algorithm used by CMS is the “anti-kt” algorithm, which is abbreviated
-“AK”. It iterates over particle pairs and finds the two (<em>i</em> and
-<em>j</em>) that are the closest in some distance measure and determines
-whether to combine them:</p>
+<p>As we’ve learned, the result of the CMS Particle Flow algorithm is a
+list of particle candidates. These particles are formed into jets using
+a “clustering algorithm”. The most common algorithm used by CMS is the
+“anti-kt” algorithm, which is abbreviated “AK”. It iterates over
+particle pairs and finds the two (<em>i</em> and <em>j</em>) that are
+the closest in some distance measure and determines whether to combine
+them:</p>
 <p><span class="math inline">\(d_{ij} = \min(p^{-2}_{T,i},p^{-2}_{T,j})
 \Delta R^2_{ij}/R^2\)</span></p>
 <p>Particle pairs are combined as long as <span class="math inline">\(d_{ij} &lt; p^{-2}_{T,i}\)</span>. The momentum
 power (-2) used by the anti-kt algorithm means that higher-momentum
 particles are clustered first. This leads to jets with a round shape
-that tend to be centered on the hardest particle. In CMS software this
-clustering is implemented using the <a href="www.fastjet.fr">FastJet</a>
-package.</p>
+that tend to be centered on the highest momentum particle.</p>
 <figure><img src="fig/clustering.png" style="width:100.0%" class="figure mx-auto d-block"></figure><figure><img src="fig/antikt.png" class="figure mx-auto d-block"></figure>
 </div>
 <div class="section level3">
 <h3 id="pileup">Pileup<a class="anchor" aria-label="anchor" href="#pileup"></a>
 </h3>
 <p>Inevitably, the list of particle flow candidates contains particles
-that did not originate from the primary interaction point. CMS
-experiences multiple simultaneous collisions, called “pileup”, during
-each “bunch crossing” of the LHC, so particles from multiple collisions
-coexist in the detector. There are various methods to remove their
-contributions from jets:</p>
+that did not originate from the primary collision. CMS experiences
+multiple simultaneous collisions, called “pileup”, during each “bunch
+crossing” of the LHC, so particles from multiple collisions coexist in
+the detector. There are various methods to remove their contributions
+from jets:</p>
 <ul>
 <li>Charged hadron subtraction <a href="http://cms-results.web.cern.ch/cms-results/public-results/preliminary-results/JME-14-001/index.html" class="external-link">CHS</a>:
-all charged hadron candidates are associated with a track. If the track
-is not associated with the primary vertex, that charged hadron can be
-removed from the list. CHS is limited to the region of the detector
+all charged hadron PF candidates are associated with a track. If the
+track is not connected with the primary vertex, that charged hadron can
+be removed from the list. CHS is limited to the region of the detector
 covered by the inner tracker. The pileup contribution to neutral hadrons
-has to be removed mathematically – more in episode 3!</li>
+has to be removed mathematically since those candidates have no
+tracks.</li>
 <li>PileUp Per Particle Identification (PUPPI, available in Run 2): CHS
 is applied, and then all remaining particles are weighted based on their
 likelihood of arising from pileup. This method is more stable and
-performant in high pileup scenarios such as the upcoming HL-LHC
+performs very well in high pileup scenarios such as the upcoming HL-LHC
 era.</li>
 </ul>
 </div>
@@ -2616,7 +2607,7 @@ collection in NanoAOD:</p>
   Jet collection branches
   </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
 <div class="accordion-body">
 <table class="table">
 <caption>Jet collection branches</caption>
@@ -2976,7 +2967,7 @@ in NanoAOD:</p>
   FatJet collection branches
   </h3>
 </button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
+<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
 <div class="accordion-body">
 <table class="table">
 <caption>Jet collection branches</caption>
@@ -3293,7 +3284,7 @@ X-&gt;qq vs QCD tagging, use Xqq/(Xqq+QCD). For W vs QCD tagging, use
 and cross-reference indices, the overwhelming majority of variables
 stored for FatJets are used to identify hadronic decays of high-momentum
 massive SM particles like top quarks, Higgs bosons, W bosons, and Z
-bosons. This will be covered in a later lesson.</p>
+bosons. This will be covered in the next page.</p>
 </section><section><h2 class="section-heading" id="met">MET<a class="anchor" aria-label="anchor" href="#met"></a>
 </h2>
 <hr class="half-width">
@@ -3301,49 +3292,21 @@ bosons. This will be covered in a later lesson.</p>
 momentum</a> is the negative vector sum of the transverse momenta of all
 particle flow candidates in an event. The magnitude of the missing
 transverse momentum vector is called missing transverse energy and
-referred to with the acronym “MET”. Since energy corrections are made to
-the particle flow jets (see the last page in this lesson), those
-corrections are propagated to MET by adding back the momentum vectors of
-the original jets and then subtracting the momentum vectors of the
-corrected jets. This correction is called “Type 1” and is standard for
-all CMS analyses.</p>
+referred to with the acronym “MET”. In a perfect collision, the
+colliding particles would have exactly 0 momentum in the <span class="math inline">\(x\)</span> or <span class="math inline">\(y\)</span> direction. If all of the collision
+products are detecter perfectly in CMS, the “missing” momentum found
+when we calculate this vector sum would also be 0. In real life, some
+particles are not detected at all by CMS, and all particles are measured
+with slight imperfections, creating MET. Types of particles that would
+produce “real” MET include neutrinos, dark matter particles, or other
+exotic particles that would not interact in CMS.</p>
 <table class="table">
-<colgroup>
-<col width="50%">
-<col width="13%">
-<col width="36%">
-</colgroup>
 <thead><tr>
 <th>Object property</th>
 <th>Type</th>
 <th>Description</th>
 </tr></thead>
 <tbody>
-<tr>
-<td>MET_MetUnclustEnUpDeltaX</td>
-<td>Float_t</td>
-<td>Delta (METx_mod-METx) Unclustered Energy Up</td>
-</tr>
-<tr>
-<td>MET_MetUnclustEnUpDeltaY</td>
-<td>Float_t</td>
-<td>Delta (METy_mod-METy) Unclustered Energy Up</td>
-</tr>
-<tr>
-<td>MET_covXX</td>
-<td>Float_t</td>
-<td>xx element of met covariance matrix</td>
-</tr>
-<tr>
-<td>MET_covXY</td>
-<td>Float_t</td>
-<td>xy element of met covariance matrix</td>
-</tr>
-<tr>
-<td>MET_covYY</td>
-<td>Float_t</td>
-<td>yy element of met covariance matrix</td>
-</tr>
 <tr>
 <td>MET_phi</td>
 <td>Float_t</td>
@@ -3408,7 +3371,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-05-btagging"><p>Content from <a href="05-btagging.html">Jet flavor tagging</a></p>
 <hr>
-<p>Last updated on 2026-06-23 |
+<p>Last updated on 2026-07-16 |
 
         <a href="https://github.com/cms-opendata-workshop/workbench-template-md/edit/main/episodes/05-btagging.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -3443,43 +3406,41 @@ CMS?</li>
 </div>
 </div>
 <p>Jet reconstruction and identification is an important part of the
-analyses at the LHC. A jet may contain the hadronization products of any
-quark or gluon, or possibly the decay products of more massive particles
-such as W or Higgs bosons. Several “b tagging” algorithms exist to
-identify jets from the hadronization of b quarks, which have unique
-properties that distinguish them from light quark or gluon jets.</p>
+analyses at the LHC. Jets can originate from many different types of
+particles. The figure below gives an example of how different “parent
+particles” can influence the internal structure of a jet. Observables
+related to the <strong>mass</strong> and <strong>internal
+structure</strong> of a jet can help us design algorithms to distinguish
+between sources. <img src="fig/JetTypes.PNG" style="width:100.0%" class="figure"></p>
+<p>Several “b tagging” algorithms exist to identify jets from b quarks,
+which have unique properties that distinguish them from light quark or
+gluon jets.</p>
 <section><h2 class="section-heading" id="b-tagging-algorithms">B Tagging Algorithms<a class="anchor" aria-label="anchor" href="#b-tagging-algorithms"></a>
 </h2>
 <hr class="half-width">
-<p>Tagging algorithms first connect the jets with good quality tracks
-that are either associated with one of the jet’s particle flow
-candidates or within a nearby cone. Both tracks and “secondary vertices”
-(track vertices from the decays of b hadrons) can be used in
-track-based, vertex-based, or “combined” tagging algorithms. The
-specific details depend upon the algorithm use. However, they all
-exploit properties of b hadrons such as:</p>
+<p>Tagging algorithms first connect jets with particle tracks that are
+either connected to one of the jet’s particle flow candidates, or lie
+within a nearby cone. Both tracks and “secondary vertices” (points where
+multiple tracks emerge within a jet) can be used in track-based,
+vertex-based, or “combined” tagging algorithms. The specific details
+depend upon the algorithm, but they all rely on special properties of b
+hadrons such as:</p>
 <ul>
-<li>long lifetime,</li>
+<li>long lifetime compared to other particles produced in a collision,
+which allows b hadrons to travel away from the collision before
+decaying,</li>
 <li>large mass,</li>
-<li>high track multiplicity,</li>
-<li>large semileptonic branching fraction,</li>
-<li>hard fragmentation fuction.</li>
+<li>high number of tracks compared to other types of quark jets,</li>
+<li>higher probability of producing a low-momentum electron or
+muon.</li>
 </ul>
-<p>In CMS, several b tagging algorithms have existed over time:</p>
+<p>In recent CMS Open Data, the most important b-tagging algorithms
+are:</p>
 <ul>
-<li>Track Counting: identifies a b jet if it contains at least N tracks
-with significantly non-zero impact parameters.</li>
-<li>Jet Probability: combines information from all selected tracks in
-the jet and uses probability density functions to assign a probability
-to each track</li>
-<li>Soft Muon and Soft Electron: identifies b jets by searching for a
-lepton from a semi-leptonic b decay.</li>
-<li>Simple Secondary Vertex: reconstructs the b decay vertex and
-calculates a discriminator using related kinematic variables.</li>
-<li>Combined Secondary Vertex (CSV): exploits all known kinematic
-variables of the jets, information about track impact parameter
-significance and the secondary vertices to distinguish b jets. This
-tagger became the default CMS algorithm in Run 1 and early Run 2.</li>
+<li>Combined Secondary Vertex (CSV): many properties of jets, tracks,
+and secondary vertices are combined into a “boosted decision tree”,
+which is a simple form of machine learning. This tagger became the
+default CMS algorithm in Run 1 and early Run 2.</li>
 <li>
 <strong>DeepCSV</strong>: the CSV algorithm was reimagined as a deep
 neural network.</li>
@@ -3557,8 +3518,9 @@ some threshold. Different thresholds will have different efficiencies
 for identifying true b quark jets and for mis-tagging light quark jets.
 As we saw for muons and other objects, a “loose” working point will
 allow the highest mis-tagging rate, while a “tight” working point will
-sacrifice some correct-tag efficiency to reduce mis-tagging. The DeepCSV
-and DeepJet algorithms are supported by CMS for 2016 Open Data.</p>
+sacrifice some correct-tag efficiency in order to reduce mis-tagging.
+The DeepCSV and DeepJet algorithms are supported by CMS for 2016 Open
+Data.</p>
 <p>The supported working points for DeepCSV and DeepJet for the 2016
 Open Data are:</p>
 <ul>
@@ -3578,59 +3540,53 @@ working point in DeepCSV and DeepJet:</p>
 </section><section><h2 class="section-heading" id="fatjet-tagging-algorithms">FatJet tagging algorithms<a class="anchor" aria-label="anchor" href="#fatjet-tagging-algorithms"></a>
 </h2>
 <hr class="half-width">
-<p>Jets can originate from many different types of particles. The figure
-below gives an example of how different “parent particles” can influence
-the internal structure of a jet. Observables related to the
-<strong>mass</strong> and <strong>internal structure</strong> of a jet
-can help us design algorithms to distinguish between sources. The most
-common type of algorithm identifies <strong>b quark jets</strong> from
-light quark or gluon jets. The POET contains all the tools you need to
-evaluate the default CMS b tagging discriminants on small-radius jets.
-See the next episode for more information. In this lesson we will focus
-on tools to identify hadronic decays of Lorentz-boosed massive SM
-particles within large-radius jets.</p>
-<figure><img src="fig/JetTypes.PNG" style="width:100.0%" class="figure mx-auto d-block"></figure><div class="section level3">
+<p>In CMS NanoAOD, the “fat” jets have a larger cone size than standard
+jets. These larger jets are ideal for identifying top quarks or W, Z, or
+Higgs bosons that have been produced with high momentum and have decayed
+to several quarks. All of these decay products can be caught within one
+large-radius jet cone. Several identification algorithms are used in CMS
+to tell the different sources apart.</p>
+<div class="section level3">
 <h3 id="groomed-mass-and-substructure">Groomed mass and substructure<a class="anchor" aria-label="anchor" href="#groomed-mass-and-substructure"></a>
 </h3>
 <p>The mass of a jet is evaluated by summing the energy-momentum
 four-vectors of all the particle flow candidates that make up the jet
 and computing the mass of the resulting object. This mass calculation is
-distorted by the low-momentum and wide-angle gluon radiation emerging
-from the initial hadrons that formed the jet. For example, the masses of
-light quark or gluon jets are measured to be much larger than the actual
-masses of these particles – typically 10–50 GeV with a smooth continuum
-to higher values. <strong>Grooming</strong> procedures can help reduce
-the impact of this radiation and bring the jet mass closer to the true
-values of the parent particles. Grooming algorithms typically cluster
-the jet’s consitituents into “subjets”, like those represented by the
-small circles in the figure below. The relationships between different
-subjets can then be tested to decide which to keep.</p>
+distorted by gluons that radiate energy away from the initial particles
+that formed the jet. For example, the masses of light quark jets are
+measured to be much larger than the actual masses of these quarks –
+typically 10–50 GeV. <strong>Mass Grooming</strong> procedures can help
+reduce the impact of this radiation and bring the jet mass closer to the
+true values of the parent particles. Grooming algorithms typically
+cluster the jet’s consitituents into “subjets”, like those represented
+by the small circles in the figure below. The relationships between
+different subjets can then be tested to decide which to keep.</p>
 <figure><img src="fig/Subjet.PNG" class="figure mx-auto d-block"></figure><p>The “softdrop” mass is included in NanoAOD for large-radius jets. In
 the “softdrop” procedure, jets are recursively de-clustered, and at each
-step jets that are too soft or at large angles are discarded. The
-following image shows the relationship between FatJet momentum, mass,
-and jet radius. As the momentum increases, jets of larger mass become
-contained within the FatJet. While W bosons can be observed from 200
-GeV, top quarks require a higher momentum threshold.</p>
+step subjets that are too low in momentum or large angles separating
+them from other subjets are discarded. The following image shows the
+relationship between FatJet momentum, mass, and jet radius. As the
+momentum increases, jets of larger mass become contained within the
+FatJet. While W bosons with a mass of 80 GeV can be observed from 200
+GeV, top quarks with a mass of 170 GeV require a higher momentum
+threshold.</p>
 <figure><img src="fig/MassVsPt.PNG" style="width:60.0%" class="figure mx-auto d-block"></figure><p>The internal structure of a jet can be probed using many observables:
 <a href="https://arxiv.org/abs/1011.2268?context=hep-ph" class="external-link">N-subjettiness</a>,
 energy correlation functions, and others. In CMS, N-subjettiness is the
 default jet substructure variable for identifying boosted particle
 decays.</p>
 <p>The “tau” variables of N-subjettiness, defined below, are jet shape
-variables whose value approaches 0 for jets having N or fewer
-subjets:</p>
+variables whose value approaches 0 for jets having N or fewer subjets.
+Top quarks typically decay to 3 quarks, so we would expect small tau
+values for N = 3, 4, 5, 6, etc, but larger values for N = 1 or 2.</p>
 <p><span class="math inline">\(\tau_{N} =
 \frac{\sum^{n_{\mathrm{constituents}}}_{i=1} p_{\mathrm{T},i}
 \min{\Delta R_{1,i}, \Delta R_{2,i}, \ldots, \Delta
 R_{N,i}}}{\sum^{n_{\mathrm{constituents}}}_{i=1} p_{T,i}R}\)</span></p>
-<p>If the value approaches zero it indicates that the consitituents all
-lie near one of the previously identified subjet axes. For a top quark
-jet with 3 subjets, we would expect small tau values for N = 3, 4, 5, 6,
-etc, but larger values for N = 1 or 2. Ratios of tau values provide the
-best discrimination for jets with a specific number of subjets. For
-two-prong jets like W, Z, or H boson decays, we study the ratio tau_2 /
-tau_1. For three-prong jets we study tau_3 / tau_2.</p>
+<p>Ratios of tau values provide the best discrimination for jets with a
+specific number of subjets. For two-quark jets like W, Z, or H boson
+decays, we study the ratio tau_2 / tau_1. For three-quark jets we study
+tau_3 / tau_2.</p>
 <p>The figures below show the relevant tau ratios for W boson (left) and
 top quark (right) jets. The structure in the tau_2/tau_1 plot is very
 unique: W bosons pool at lower values of tau_2/tau_1, while top quarks
@@ -3753,7 +3709,7 @@ listed below.</p>
   FatJet branches for deep network taggers
   </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
 <div class="accordion-body">
 <table class="table">
 <caption>FatJet branches for deep network taggers</caption>
@@ -3949,46 +3905,6 @@ X-&gt;qq vs QCD tagging, use Xqq/(Xqq+QCD). For W vs QCD tagging, use
 </div>
 </div>
 </div>
-</div>
-</section><section><h2 class="section-heading" id="tagger-scale-factors">Tagger scale factors<a class="anchor" aria-label="anchor" href="#tagger-scale-factors"></a>
-</h2>
-<hr class="half-width">
-<p>Scale factors to increase or decrease the number of tagged jets in
-simulation can be applied in a number of ways, but typically involve
-weighting simulation events based on the efficiencies and scale factors
-relevant to each jet in the event.</p>
-<p>For small-radius jet b-tagging, details and usage references from Run
-1 can be found at these references. The concepts and methods for
-applying scale factors are unchanged in Run 2.</p>
-<ul>
-<li><a href="https://twiki.cern.ch/twiki/bin/view/CMSPublic/BtagRecommendation2011OpenData#Data_MC_Scale_Factors" class="external-link">Explanation</a></li>
-<li><a href="https://twiki.cern.ch/twiki/bin/view/CMSPublic/BtagRecommendation2011OpenData#Methods_to_Apply_b_Tagging_Effic" class="external-link">Examples
-of application methods</a></li>
-</ul>
-<p>The most common scale factor application method (1a) relies on 4
-pieces of information for each jet in simulation: * Tagging status: does
-this jet pass the discriminator threshold for a given working point? *
-Flavor (b, c, light): accessed using a <code>pat::Jet</code> member
-function called <code>partonFlavour()</code>. * Efficiency: measured as
-a function of momentum as in the image above. * Scale factor: accessed
-from the</p>
-<p>For large-radius jet tagging, scale factors are computed for specific
-boosted particle flavors and can be applied using similar methods as for
-b tagging.</p>
-<div id="spplication-instructions-coming-soon" class="callout">
-<div class="callout-square">
-<i class="callout-icon" data-feather="bell"></i>
-</div>
-<span class="callout-header">Callout</span>
-<div id="spplication-instructions-coming-soon" class="callout-inner">
-<h3 class="callout-title">Spplication instructions coming soon!</h3>
-<div class="callout-content">
-<p>The <a href="https://cms-opendata-guide.web.cern.ch/" class="external-link">CMS Open Data
-Guide</a> will include the scale factor data files and application
-instructions for 2015 and 2016 Open Data.</p>
-</div>
-</div>
-</div>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -4015,207 +3931,7 @@ non-interesting jets</li>
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
-</section></section><section id="aio-06-jecjer"><p>Content from <a href="06-jecjer.html">Jet corrections</a></p>
-<hr>
-<p>Last updated on 2026-06-23 |
-
-        <a href="https://github.com/cms-opendata-workshop/workbench-template-md/edit/main/episodes/06-jecjer.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
-<div class="text-end">
-          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
-        </div>
-<div class="overview card">
-<h2 class="card-header">Overview</h2>
-<div class="row g-0">
-<div class="col-md-4">
-<div class="card-body">
-<div class="inner">
-<h3 class="card-title">Questions</h3>
-<ul>
-<li>How are data/simulation differences dealt with for jet energy?</li>
-<li>How do uncorrected and corrected jet momenta compare?</li>
-<li>How large is the JES uncertainty in different regions?</li>
-<li>How large is the JER uncertainty in different regions?</li>
-</ul>
 </div>
-</div>
-</div>
-<div class="col-md-8">
-<div class="card-body">
-<div class="inner bordered">
-<h3 class="card-title">Objectives</h3>
-<ul>
-<li>Learn about typical differences in jet energy scale and resolution
-between data and simulation</li>
-<li>Explore the JES and JER uncertainties using histograms</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-</div>
-<p>Unsurprisingly, the CMS detector does not measure jet energies
-perfectly, nor do simulation and data agree perfectly! The measured
-energy of jet must be corrected so that it can be related to the true
-energy of its parent particle. These “Jet Energy Scale” (JES)
-corrections account for several effects and are factorized so that each
-effect can be studied independently. All of the corrections in this
-section are described in “Jet Energy Scale and Resolution” papers by
-CMS: * <a href="https://arxiv.org/pdf/1107.4277.pdf" class="external-link">2011, 7 TeV</a> *
-<a href="https://arxiv.org/abs/1607.03663" class="external-link">2017, 8 TeV</a></p>
-<section><h2 class="section-heading" id="jes-correction-levels">JES Correction levels<a class="anchor" aria-label="anchor" href="#jes-correction-levels"></a>
-</h2>
-<hr class="half-width">
-<figure><img src="fig/correctionFlow.PNG" class="figure mx-auto d-block"></figure><p>Particles from additional interactions in nearby bunch crossings of
-the LHC contribute energy in the calorimeters that must somehow be
-distinguished from the energy deposits of the main interaction. Extra
-energy in a jet’s cone can make its measured momentum larger than the
-momentum of the parent particle. The first layer (“L1”) of jet energy
-corrections accounts for pileup by subtracting the average transverse
-momentum contribution of the pileup interactions to the jet’s cone area.
-This average pileup contribution varies by pseudorapidity and, of
-course, by the number of interactions in the event.</p>
-<p>The second and third layers of corrections (“L2L3”) correct the
-measured momentum to the true momentum as functions of momentum and
-pseudorapidity, bringing the reconstructed jet in line with the
-generated jet. These corrections are derived using momentum balancing
-and missing energy techniques in dijet and Z boson events. One
-well-measured object (ex: a jet near the center of the detector, a Z
-boson reconstructed from leptons) is balanced against a jet for which
-corrections are derived.</p>
-<p>All of these corrections are applied to both data and simulation.
-Data events are then given “residual” corrections to bring data into
-line with the corrected simulation. A final set of flavor-based
-corrections are used in certain analyses that are especially sensitive
-to flavor effects. The figure below shows the result of the L1+L2+L3
-corrections on the jet response.</p>
-<figure><img src="fig/responseFlow.PNG" class="figure mx-auto d-block"></figure></section><section><h2 class="section-heading" id="jet-energy-resolution">Jet Energy Resolution<a class="anchor" aria-label="anchor" href="#jet-energy-resolution"></a>
-</h2>
-<hr class="half-width">
-<p>Jet Energy Resolution (JER) corrections are applied after JES on
-strictly MC simulations. Unlike JES, which adjusts the mean of the
-momentun response distribution, JER adjusts the width of the
-distribution. The ratio of reconstructed transverse momentum to true
-(generated) transverse momentum forms a Gaussian distributions – the
-width of this Gaussian is the JER. In data, where no “true” pT is
-available, the JER is measured using photon/Z + jet events where the jet
-recoils against the photon or Z boson, both of which can be measured
-quite precisely in the CMS detector. The JER is typically smaller in
-simulation than in data, leading to scale factors that are larger than
-1. These scale factors are applied using two methods:</p>
-<ul>
-<li>
-<a href="https://oaktrust.library.tamu.edu/handle/1969.1/173472" class="external-link">Adjusting
-the ratio</a> of reconstructed to generated momentum using the scale
-factor (if a well-matched generated jet is found),</li>
-<li>Randomly smearing the momentum using a Gaussian distribution based
-on the resolution and scale factor (if no generated jet is found).</li>
-</ul>
-<figure><img src="fig/jerfactors.JPG" class="figure mx-auto d-block"></figure></section><section><h2 class="section-heading" id="applying-jes-and-jer">Applying JES and JER<a class="anchor" aria-label="anchor" href="#applying-jes-and-jer"></a>
-</h2>
-<hr class="half-width">
-<p>Earlier editions of this workshop documented a long process of
-applying the appropriate corrections to MiniAOD Open Data for 2015! The
-2016 Open Data samples are “Ultra Legacy”, and an appropriate set of
-corrections have already been applied to the jets.</p>
-<div id="application-instructions-coming-soon" class="callout">
-<div class="callout-square">
-<i class="callout-icon" data-feather="bell"></i>
-</div>
-<span class="callout-header">Callout</span>
-<div id="application-instructions-coming-soon" class="callout-inner">
-<h3 class="callout-title">Application instructions coming soon!</h3>
-<div class="callout-content">
-<p>Sometimes, you may need to reapply the jet corrections in an
-analysis, perhaps after removing leptons from jets. Instructions and
-examples to perform this process with NanoAOD samples will be included
-in the CMS Open Data Guide later in 2024.</p>
-</div>
-</div>
-</div>
-</section><section><h2 class="section-heading" id="uncertainties">Uncertainties<a class="anchor" aria-label="anchor" href="#uncertainties"></a>
-</h2>
-<hr class="half-width">
-<p>All corrections have accompanying uncertainties. The JES
-uncertainties have several sources, shown in the figure below. The L1
-(pileup) uncertainty dominates at low momentum, while the L3 (absolute
-scale) uncertainty takes over for higher momentum jets. All corrections
-are quite precise for jets located near the center of the CMS barrel
-region, and the precision drops as pseudorapidity increases and
-different subdetectors lose coverage.</p>
-<figure><img src="fig/uncertainties.PNG" class="figure mx-auto d-block"></figure><p>The JER uncertainty is evaluated by shifting the scale factors up and
-down according to the error bars shown in the scale factor figure above.
-These uncertainties arise from treatment of initial and final state
-radiation in the data measurement, differences in Monte Carlo tunes
-across generator platforms, and small non-Gaussian tail effects. The JER
-uncertainty is evaluated by re-calculating the smearing factor using the
-shifted scale factors. The uncertainties in JES and JER are kept
-separate from each other: when varying JES, the JER correction is held
-constant, and vice versa. This results in <strong>5 momentum
-values</strong> for each jet: a central value and two sets of
-uncertainties:</p>
-<p>The JES corrections are significant, far larger than the uncertainty
-itself. The first level of correction, for pileup removal, tends to
-reduce the momentum of the jet, as seen in the left figure below that
-compares corrected to uncorrected jets. The right figure shows a similar
-comparison for JER smearing – this uncertainty is much smaller for the
-majority of jets!</p>
-<p><img src="fig/jetPtUncorrCorrJEC_highstat.JPG" style="width:48.0%" class="figure">
-| <img src="fig/jetPtUncorrCorrJER_highstat.JPG" style="width:48.0%" class="figure"></p>
-<p>It is useful to make the same comparisons for jets in the forward
-regions of the CMS detector, where tracking is not available. The left
-(right) figure below shows JES (JER) effects for jets with
-pseudorapidity greater than 3.</p>
-<p><img src="fig/jetPtUncorrCorrJEC_forward.JPG" style="width:48.0%" class="figure">
-| <img src="fig/jetPtUncorrCorrJER_forward.JPG" style="width:48.0%" class="figure"></p>
-<p>In the endcap region the uncertainty on the JER scale factor has
-become nearly 20%! So this uncertainty gains almost equal footing with
-JES. Many CMS analyses restrict themselves to studying jets in the
-“central” region of the detector, defined loosely by the tracker
-acceptance region of <code>abs(eta) &lt; 2.4</code> precisely to avoid
-these larger JES and JER uncertainties.</p>
-<div id="uncertainty-instructions-coming-soon" class="callout">
-<div class="callout-square">
-<i class="callout-icon" data-feather="bell"></i>
-</div>
-<span class="callout-header">Callout</span>
-<div id="uncertainty-instructions-coming-soon" class="callout-inner">
-<h3 class="callout-title">Uncertainty instructions coming soon!</h3>
-<div class="callout-content">
-<p>Methods to evaluate JES and JER uncertainties for NanoAOD files will
-also be included in the CMS Open Data Guide later in 2024.</p>
-</div>
-</div>
-</div>
-<div id="keypoints1" class="callout keypoints">
-<div class="callout-square">
-<i class="callout-icon" data-feather="key"></i>
-</div>
-<span class="callout-header">Key Points</span>
-<div class="callout-inner">
-<div class="callout-content">
-<ul>
-<li>Jet energy corrections are factorized and account for many
-mismeasurement effects</li>
-<li>L1+L2+L3 should be applied to jets used for analyses, with residual
-corrections for data</li>
-<li>Jet energy resolution in simulation is typically too narrow and is
-smeared using scale factors</li>
-<li>Jet energy and resolution corrections are sources of systematic
-error and uncertainties should be evaluated</li>
-<li>In general, the jet corrections are significant and lower the
-momenta of the jets with standard LHC pileup conditions</li>
-<li>For most jets, the JES uncertainty dominates over the JER
-uncertainty</li>
-<li>In the endcap region of the detector, the JER uncertainty in larger
-and matches the JES uncertainty</li>
-</ul>
-</div>
-</div>
-</div>
-<!--
-Place links that you need to refer to multiple times across pages here. Delete
-any links that you are not going to use.
- -->
 </section></section>
 </div>
     </main>
@@ -4264,8 +3980,8 @@ any links that you are not going to use.
   "url": "https://cms-opendata-workshop.github.io/workbench-template-md/aio.html",
   "identifier": "https://cms-opendata-workshop.github.io/workbench-template-md/aio.html",
   "dateCreated": "2024-07-29",
-  "dateModified": "2026-07-14",
-  "datePublished": "2026-07-14"
+  "dateModified": "2026-07-16",
+  "datePublished": "2026-07-16"
 }
 
   </script><script>

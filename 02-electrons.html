@@ -108,11 +108,11 @@
   CMS Physics Objects
 </div>
 
-<aside class="col-md-12 lesson-progress"><div style="width: 7%" class="percentage">
-    7%
+<aside class="col-md-12 lesson-progress"><div style="width: 8%" class="percentage">
+    8%
   </div>
   <div class="progress incubator">
-    <div class="progress-bar incubator" role="progressbar" style="width: 7%" aria-valuenow="7" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
+    <div class="progress-bar incubator" role="progressbar" style="width: 8%" aria-valuenow="8" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
     </div>
   </div>
 </aside><div class="container">
@@ -228,7 +228,7 @@
 <div class="accordion accordion-flush" id="accordionFlush4">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading4">
-        <a href="03-muons.html">3. Muons &amp; Taus</a>
+        <a href="03-muons.html">3. Muons &amp; Tau leptons</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -247,15 +247,6 @@
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading6">
         <a href="05-btagging.html">5. Jet flavor tagging</a>
-    </div><!--/div.accordion-header-->
-
-  </div><!--/div.accordion-item-->
-</div><!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush7">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading7">
-        <a href="06-jecjer.html">6. Jet corrections</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -313,13 +304,13 @@
           Previous: Intro to CMS Physics
         </a>
         <a class="chapter-link float-end" href="03-muons.html" rel="next">
-          Next: Muons &amp; Taus...
+          Next: Muons &amp; Tau leptons...
           <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i>
         </a>
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Electrons &amp; Photons</h1>
-        <p>Last updated on 2026-06-23 |
+        <p>Last updated on 2026-07-16 |
 
         <a href="https://github.com/cms-opendata-workshop/workbench-template-md/edit/main/episodes/02-electrons.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -359,45 +350,46 @@ quantities</li>
 </div>
 </div>
 <section><h2 class="section-heading" id="motivation">Motivation<a class="anchor" aria-label="anchor" href="#motivation"></a></h2>
-<hr class="half-width"><p>In the middle of the workshop we will be working on the main
-activity, which is to attempt to replicate a <a href="https://link.springer.com/content/pdf/10.1007/JHEP09(2017)051.pdf" class="external-link">CMS
-physics analysis</a> in a simplified way using modern analysis tools.
-The final state that we will be looking at contains electrons, muons and
-jets. We are using these objects as examples to review the way in which
-we extract physics objects information.</p>
-<p>The analysis requires some special variables, which we will need to
-identify in our Open Data NanoAOD files.</p>
+<hr class="half-width"><p>In this workshop we will do some simple analysis examples using
+NanoAOD Open Data. Physics objects that are detected in CMS have their
+properties measured and stored in the CMS data files. This and the
+following pages will introduce the different physics objects more deeply
+and try to explain several of the most important “branches” in NanoAOD
+ROOT “trees” for each type of object.</p>
 </section><section><h2 class="section-heading" id="electromagnetic-objects">Electromagnetic objects<a class="anchor" aria-label="anchor" href="#electromagnetic-objects"></a></h2>
 <hr class="half-width"><p>We call photons and electrons <strong>electromagnetic
 particles</strong> because they leave most of their energy in the
 electromagnetic calorimeter (<strong>ECAL</strong>) so they share many
-common properties and functions</p>
-<p>Many of the different hypothetical exotic particles are unstable and
+common properties.</p>
+<p>Many of the different hypothetical exotic particles for which CMS
+scientists are searching are unstable. Some of these particles
 <strong>can transform, or <em>decay</em>, into electrons</strong>,
 photons, or both. Electrons and photons are also standard tools to
 measure better and understand the properties of already known particles.
 For example, one way to find a Higgs Boson is by looking for signs of
-two photons, or four electrons in the debris of high energy collisions.
-Because electrons and photons are crucial in so many different
-scenarios, the physicists in the CMS collaboration make sure to do their
-best to reconstruct and identify these objects.</p>
+either two photons or four electrons in the debris of high energy
+collisions. Because electrons and photons are crucial in so many
+different scenarios, the physicists in the CMS collaboration make sure
+to do their best to reconstruct and identify these objects.</p>
 <figure><img src="fig/brem.gif" style="width:50.0%" class="figure mx-auto d-block"></figure><p>As depicted in the figure above, tracks – from the pixel and silicon
 tracker systems – as well as ECAL energy deposits are used to
 <strong>identify</strong> the passage of electrons in CMS. Being
-charged, electron trajectories <strong>curve</strong> inside the CMS
-magnetic field. Photons are similar objects but with no tracks.
-Sophisticated algorithms are run in the <strong>reconstruction</strong>
-to take into account subtleties related to the identification of an
-electromagnetic particle. An example is the convoluted
-<strong>showering</strong> of sub-photons and sub-electrons that can
-reach the ECAL due to <em>bremsstrahlung</em> and <em>photon
-conversions</em>.</p>
-<p>We measure momentum and energy but also other properties of these
-objects that help analysts understand better their quality and
+charged, the solid red electron trajectory <strong>curves</strong>
+inside the CMS magnetic field. Photons (depicted with dashed lines
+above) are similar objects but with no tracks. Sophisticated algorithms
+are run in the <strong>reconstruction</strong> to take into account
+subtleties related to the identification of an electromagnetic particle.
+An example is the convoluted <strong>showering</strong> of sub-photons
+and sub-electrons that can reach the ECAL due to <em>bremsstrahlung</em>
+and <em>photon conversions</em> – in the animation, all three energy
+deposits shown in the ECAL would be grouped together as coming from one
+electron object.</p>
+<p>From the tracks and energy clusters we can measure the
+electromagnetic particle’s momentum and energy as well as other
+properties that help analysts understand better their quality and
 origin.</p>
 </section><section><h2 class="section-heading" id="electron-variables-in-nanoaod">Electron variables in NanoAOD<a class="anchor" aria-label="anchor" href="#electron-variables-in-nanoaod"></a></h2>
-<hr class="half-width"><p>In the pre-exercises, you learned how to find NanoAOD datasets on the
-Open Data Portal. One example is the <a href="https://opendata.cern.ch/record/30562" class="external-link">SingleElectron dataset</a>.
+<hr class="half-width"><p>One example of a NanoAOD dataset on the Open Data Portal is the <a href="https://opendata.cern.ch/record/30562" class="external-link">SingleElectron dataset</a>.
 The “Dataset Semantics” section has a link to the <a href="https://opendata.cern.ch/eos/opendata/cms/dataset-semantics/NanoAOD/30562/SingleElectron_doc.html" class="external-link">variable
 list webpage</a>. Each “collection” of objects in the NanoAOD file is
 linked by a common naming scheme (ex: <code>Electron_*</code>). The
@@ -612,8 +604,10 @@ region</td>
 <div class="section level3">
 <h3 id="electron-4-vector-and-track-information">Electron 4-vector and track information<a class="anchor" aria-label="anchor" href="#electron-4-vector-and-track-information"></a></h3>
 <p>All CMS physics objects contain basic 4-vector information:
-transverse momentum, pseudorapidity, azimuthal angle, and mass or
-energy:</p>
+transverse momentum, pseudorapidity (related to angle from one proton
+beam to the other), azimuthal angle (angle around the cylinder of CMS),
+and mass or energy. This information can easily be converted into a
+4-vector of px, py, pz, and energy.</p>
 <table class="table"><caption>electron 4-vector branches</caption>
 <thead><tr><th>Object property</th>
 <th>Type</th>
@@ -629,21 +623,23 @@ energy:</p>
 <td>phi</td>
 </tr><tr><td>Electron_pt</td>
 <td>Float_t</td>
-<td>p_{T}</td>
+<td>p_T, transverse momentum</td>
 </tr></tbody></table><p>Most charged physics objects are also connected to tracks from the
 CMS tracking detectors, and therefore the electric charge can be
 identified from the track curvature. Electron charge can be computed
 from 3 unique algorithms, so a <code>tightCharge</code> variable exists
 to show when multiple of the charge determinations agree. Information
 from tracks provides other kinematic quantities that are common to
-multiple types of objects. Often, the most pertinent information about
-an object to access from its associated track is its <strong>impact
-parameter</strong> with respect to the primary interaction vertex. We
-can access the impact parameters in the xy-plane (<code>dxy</code> or
-<code>d0</code>) and along the beam axis (<code>dz</code>), as well as
-their respective uncertainties. There is also a 3D impact parameter
-significance that is very useful for identifying leptons that emerged
-from a heavy flavor hadron decay.</p>
+multiple types of objects. It is often interesting to check the
+<strong>impact parameter</strong> of a charged object’s track with
+respect to the primary collision vertex, since this gives a good idea of
+whether or not that particle emerged directly from that particular
+collision or not. We can access the impact parameters in the xy-plane
+(<code>dxy</code> or <code>d0</code>) and along the beam axis
+(<code>dz</code>), as well as their respective uncertainties. There is
+also a 3D impact parameter significance that is very useful for
+identifying leptons that emerged from a heavy flavor hadron decay, since
+those leptons will usually have a larger 3D impact parameter.</p>
 <table class="table"><caption>electron track-related branches</caption>
 <colgroup><col width="50%"><col width="13%"><col width="36%"></colgroup><thead><tr><th>Object property</th>
 <th>Type</th>
@@ -679,10 +675,8 @@ from a heavy flavor hadron decay.</p>
 <h3 class="callout-title">Track-based info for photons</h3>
 <div class="callout-content">
 <p>Note: in the case of Photons, since they are neutral objects, they do
-not have a direct track link (though displaced track segments may appear
-from electrons or positrons produced by the photon as it transits the
-detector material). While the <code>charge</code> variable exists for
-all objects, it is not used in photon analyses.</p>
+not have a direct track link. While the <code>charge</code> variable
+exists for all objects, it is not used in photon analyses.</p>
 </div>
 </div>
 </div>
@@ -690,11 +684,11 @@ all objects, it is not used in photon analyses.</p>
 <div class="section level3">
 <h3 id="detector-information-for-identification">Detector information for identification<a class="anchor" aria-label="anchor" href="#detector-information-for-identification"></a></h3>
 <p>The most signicant difference between a list of certain particles
-from a Monte Carlo generator and a list of the corresponding physics
-objects from CMS is likely the inherent uncertainty in the
-reconstruction. Selection of “a muon” or “an electron” for analysis
-requires algorithms designed to separate “real” objects from “fakes”.
-These are called <strong>identification</strong> algorithms.</p>
+from a simulation and a list of the corresponding physics objects from
+CMS data is likely the inherent uncertainty in the reconstruction.
+Selection of “a muon” or “an electron” for analysis requires algorithms
+designed to separate “real” objects from “fakes”. These are called
+<strong>identification</strong> algorithms.</p>
 <p>Other algorithms are designed to measure the amount of energy
 deposited near the object, to determine if it was likely produced near
 the primary interaction (typically little nearby energy), or from the
@@ -716,15 +710,14 @@ can be accessed from the physics object classes.</p>
 </div>
 <div class="section level3">
 <h3 id="multivariate-electron-identification-mva">Multivariate Electron Identification (MVA)<a class="anchor" aria-label="anchor" href="#multivariate-electron-identification-mva"></a></h3>
-<p>In the Multi-variate Analysis (MVA) approach, one forms a single
-discriminator variable that is computed based on multiple parameters of
-the electron object and provides the best separation between the signal
-and backgrounds by means of multivariate analysis methods and
-statistical learning tools. One can then cut on discriminator value or
-use the distribution of the values for a shape based statistical
-analysis.</p>
-<p>There are two basic types of MVAs that are were trained by CMS for
-2016 electrons:</p>
+<p>In the Multi-variate Analysis (MVA) approach, simple machine learning
+networks are trained on multiple parameters of the electron object, and
+the network’s output value (which typically spans from 0 to 1) can be
+used to separate real electrons from fake electrons. Analysts choose a
+particular numerical value to use as the division point between real
+objects (with values higher that the cut) and fake objects (with values
+lower than the cut). There are two basic types of MVAs that are were
+trained by CMS for 2016 electrons:</p>
 <ul><li>
 <strong>MVA with isolation</strong>: the MVA includes standard
 particle-flow isolation as one of the variables used for training. This
@@ -781,14 +774,16 @@ identification criteria</a>:</p>
 </tr><tr><td>Electron_cutBased_HEEP</td>
 <td>Bool_t</td>
 <td>cut-based HEEP ID</td>
-</tr></tbody></table><p>Four standard working points are provided * Veto (average efficiency
-~95%). Use this working point for third lepton veto or counting. * Loose
-(average efficiency ~90%). Use this working point when backgrounds are
-rather low. * Medium (average efficiency ~80%). This is a good starting
-point for generic measurements involving W or Z bosons. * Tight (average
-efficiency ~70%). Use this working point for measurements where
-backgrounds are a serious problem.</p>
-<p>All of the cut-based working points include particle-flow isolation
+</tr></tbody></table><p>Four standard working points are provided</p>
+<ul><li>Veto (average efficiency ~95%). Use this working point for vetoing
+events with more leptons than you want.</li>
+<li>Loose (average efficiency ~90%). Use this working point when
+backgrounds are rather low.</li>
+<li>Medium (average efficiency ~80%). This is a good starting point for
+generic measurements involving W or Z bosons.</li>
+<li>Tight (average efficiency ~70%). Use this working point for
+measurements where backgrounds are a serious problem.</li>
+</ul><p>All of the cut-based working points include particle-flow isolation
 requirements. The <code>HEEP</code> identifier is specifically intended
 to improve efficiency for high-energy electrons with more than 100-200
 GeV of transverse momentum.</p>
@@ -798,14 +793,14 @@ GeV of transverse momentum.</p>
 <p><strong>Isolation</strong> is computed in similar ways for all
 physics objects: search for particles in a cone around the object of
 interest and sum up their energies, subtracting off the energy deposited
-by pileup particles. This sum divided by the object of interest’s
-transverse momentum is called <strong>relative isolation</strong> and is
-the most common way to determine whether an object was produced
-“promptly” in or following the proton-proton collision (ex: electrons
-from a Z boson decay, or photons from a Higgs boson decay). Relative
-isolation values will tend to be large for particles that emerged from
-weak decays of hadrons within jets, or other similar “nonprompt”
-processes.</p>
+by particles from other simultaneous collisions. This sum divided by the
+object’s transverse momentum is called <strong>relative
+isolation</strong> and is the most common way to determine whether an
+object was produced “promptly” in or following the proton-proton
+collision (ex: electrons from a Z boson decay, or photons from a Higgs
+boson decay). Relative isolation values will tend to be large for
+electrons that emerged from decays of hadrons within jets, or other
+similar “nonprompt” processes.</p>
 <p>While many of the electron identification algorithms include
 isolation, the isolation values are also available:</p>
 <table class="table"><caption>electron isolation</caption>
@@ -1015,7 +1010,7 @@ any links that you are not going to use.
           Previous: Intro to CMS Physics
         </a>
         <a class="chapter-link float-end" href="03-muons.html" rel="next">
-          Next: Muons &amp; Taus...
+          Next: Muons &amp; Tau leptons...
           <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i>
         </a>
       </div>
@@ -1061,8 +1056,8 @@ any links that you are not going to use.
   "url": "https://cms-opendata-workshop.github.io/workbench-template-md/02-electrons.html",
   "identifier": "https://cms-opendata-workshop.github.io/workbench-template-md/02-electrons.html",
   "dateCreated": "2024-07-29",
-  "dateModified": "2026-06-23",
-  "datePublished": "2026-07-14"
+  "dateModified": "2026-07-16",
+  "datePublished": "2026-07-16"
 }
 
   </script><script>

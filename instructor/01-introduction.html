@@ -226,7 +226,7 @@
 <div class="accordion accordion-flush" id="accordionFlush4">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading4">
-        <a href="03-muons.html">3. Muons &amp; Taus</a>
+        <a href="03-muons.html">3. Muons &amp; Tau leptons</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -245,15 +245,6 @@
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading6">
         <a href="05-btagging.html">5. Jet flavor tagging</a>
-    </div><!--/div.accordion-header-->
-
-  </div><!--/div.accordion-item-->
-</div><!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush7">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading7">
-        <a href="06-jecjer.html">6. Jet corrections</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -317,7 +308,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Intro to CMS Physics Objects</h1>
-        <p>Last updated on 2026-06-23 |
+        <p>Last updated on 2026-07-16 |
 
         <a href="https://github.com/cms-opendata-workshop/workbench-template-md/edit/main/episodes/01-introduction.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -363,23 +354,24 @@ interpret their nature.</p>
 <p>Certainly, we cannot directly observe all the particles created in
 the collisions because some of them decay very quickly or simply do not
 interact with our detector. However, <em>we can infer their
-presence</em>. If they decay to other stable particles and interact with
-the apparatus, they leave signals in the CMS subdetectors. These signals
-are used to reconstruct the decay products or infer their presence; we
-call these, <strong>physics objects</strong>.</p>
-<p>Physics objects are built with the information collected by the
-sensors of the CMS detector. Take a look at the CMS experiment in the
-image below. This is a good recent <a href="https://youtu.be/6gfvGTCWXaw" class="external-link">video</a> that you can watch later
+presence</em>. If they decay to more stable particles and interact with
+the material of the detector, they leave signals that CMS can record.
+These signals are used to determine the presence of specific types of
+particles moving through the detector – we call these, <strong>physics
+objects</strong>.</p>
+<p>The CMS detector has many many sensors of different kinds that can
+detect signals from particles passing through. Take a look at the CMS
+experiment in the image below. This is a good recent <a href="https://youtu.be/6gfvGTCWXaw" class="external-link">video</a> that you can watch later
 to get a quick feeling of how CMS looks now in Run 3.</p>
-<figure><img src="../fig/cmsdetector.png" style="width:100.0%" class="figure mx-auto d-block"></figure><p>Physics objects could be</p>
-<ul><li>muons</li>
-<li>electrons</li>
-<li>jets</li>
+<figure><img src="../fig/cmsdetector.png" style="width:100.0%" class="figure mx-auto d-block"></figure><p>Physics objects can be:</p>
+<ul><li>electrons</li>
+<li>muons</li>
 <li>photons</li>
-<li>taus</li>
+<li>“jets” (cones of energy from particles made of quarks)</li>
+<li>tau leptons</li>
 <li>missing transverse momentum</li>
-</ul><p>In the <a href="https://opendata.cern.ch" class="external-link">CERN Open Portal</a> (CODP)
-site one can find a more detailed description of these physical objects
+</ul><p>On the <a href="https://opendata.cern.ch" class="external-link">CERN Open Portal</a> (CODP)
+site you can find a more detailed description of these physics objects
 and a list of them corresponding to <a href="https://opendata.cern.ch/docs/cms-physics-objects-2010" class="external-link">2010</a>,
 <a href="https://opendata.cern.ch/docs/cms-physics-objects-2011" class="external-link">2011/2012</a>,
 and <a href="https://opendata.cern.ch/docs/cms-physics-objects-2015" class="external-link">2015/2016</a>
@@ -391,28 +383,26 @@ file format</a> that contains the most commonly used physics object
 information in a standard ROOT tree.</p>
 </section><section><h2 class="section-heading" id="physics-objects-reconstruction">Physics Objects reconstruction<a class="anchor" aria-label="anchor" href="#physics-objects-reconstruction"></a></h2>
 <hr class="half-width"><p>Physics objects are mainly <strong>reconstructed</strong> using
-methods like clustering and linking parts of a CMS subsystem to parts of
-other CMS subsystems. For instance, electromagnetic objects (electrons
-or photons) are reconstructed by the linking of tracks with ECAL energy
-deposits.</p>
+methods like clustering adjacent signals and linking information between
+different CMS detector components. For instance, electromagnetic objects
+(electrons or photons) are reconstructed by linking tracks from the
+inner tracking detectors with energy clusters in the electromagnetic
+calorimeter.</p>
 <figure><img src="../fig/cmsslice.png" style="width:100.0%" class="figure mx-auto d-block"></figure><p>These actions are essential parts of the so-called <strong>Particle
 Flow</strong> (PF) algorithm.</p>
 <figure><img src="../fig/pflow.png" style="width:100.0%" class="figure mx-auto d-block"></figure><p>The <strong>particle-flow (PF) algorithm</strong> aims at
 reconstructing and identifying all stable particles in the event, i.e.,
 electrons, muons, photons, charged hadrons and neutral hadrons, with a
-thorough combination of all CMS sub-detectors towards an optimal
-determination of their direction, energy and type. This <strong>list of
-individual particles is then used</strong>, as if it came from a
-Monte-Carlo event generator, to build jets (from which the quark and
-gluon energies and directions are inferred), to determine the missing
+thorough combination of all CMS sub-detectors in order to best determine
+their direction, energy and particle type. This list of individual
+particles is then used to build jets, to determine the missing
 transverse energy (which gives an estimate of the direction and energy
 of the neutrinos and other invisible particles), to reconstruct and
-identify taus from their decay products and more.</p>
-<p>The PF algorithm and all its reconstruction tributaries are written
-in C++ and are part of the <strong>CMSSW</strong> software that is
-required to analyze any open data in the earlier AOD or MiniAOD formats.
-For more information about the PF algorithm you can visit a lesson from
-an earlier workshop: <a href="https://cms-opendata-workshop.github.io/workshop2023-advobjects/" class="external-link">Advanced
+identify tau leptons from their decay products, and more.</p>
+<p>The PF algorithm is written in C++ and is part of the
+<strong>CMSSW</strong> software that is required to analyze any open
+data in the earlier AOD or MiniAOD formats. For more information about
+the PF algorithm you can visit a lesson from an earlier workshop: <a href="https://cms-opendata-workshop.github.io/workshop2023-advobjects/" class="external-link">Advanced
 Tools lesson</a>. The CMS open data from 2016 contains some data samples
 in the NanoAOD format that have been supplemented with particle flow
 information: <a href="https://opendata.cern.ch/search?q=&amp;f=experiment%3ACMS&amp;f=file_type%3Ananoaod-pf" class="external-link">nanoad-pf
@@ -493,8 +483,8 @@ any links that you are not going to use.
   "url": "https://cms-opendata-workshop.github.io/workbench-template-md/instructor/01-introduction.html",
   "identifier": "https://cms-opendata-workshop.github.io/workbench-template-md/instructor/01-introduction.html",
   "dateCreated": "2024-07-29",
-  "dateModified": "2026-06-23",
-  "datePublished": "2026-07-14"
+  "dateModified": "2026-07-16",
+  "datePublished": "2026-07-16"
 }
 
   </script><script>
