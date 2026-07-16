@@ -177,6 +177,7 @@ Table: FatJet branches for deep network taggers
 | FatJet_particleNet_ZvsQCD | Float_t | ParticleNet tagger Z vs QCD discriminator |
 | FatJet_particleNet_mass | Float_t | ParticleNet mass regression |
 
+:::::::::::::::::::::::::::::
 
 ::::::::::: keypoints
 
